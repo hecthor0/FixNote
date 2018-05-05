@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Fix Note</string>
+    <string name="email">E-mail</string>
+    <string name="Enviar">Enviar</string>
+    <string name="datos_cliente">Datos del Cliente</string>
+    <string name="nombre">Nombre(s)</string>
+    <string name="apellido1">Primer apellido</string>
+    <string name="apellido2">Segundo apellido</string>
+    <string name="cel">Télefono Celular</string>
+    <string name="datos_equipo">Datos de equipo</string>
+    <string name="modelo">Modelo</string>
+    <string name="id_equipo">IMEI/#Serie</string>
+    <string name="info">Información de reparación</string>
+
+</resources>
