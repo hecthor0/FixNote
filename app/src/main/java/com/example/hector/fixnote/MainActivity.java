@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
                         Transport.send(message);
 
-                        Toast.makeText(MainActivity.this, "Nota enviada!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Nota enviada", Toast.LENGTH_LONG).show();
 
                         nombre.setText("");
                         apellido1.setText("");
