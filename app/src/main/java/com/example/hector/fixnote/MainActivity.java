@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     Session session;
 
-    EditText nombre,apellido1,apellido2,email,celular,modelo,id_equipo,info_repa;
+    EditText nombre,apellido1,apellido2,email,celular,modelo,id_equipo,info_repa,costo;
     Button enviar;
 
     @Override
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         modelo = (EditText)findViewById(R.id.modelo);
         id_equipo = (EditText)findViewById(R.id.id_equipo);
         info_repa = (EditText)findViewById(R.id.info_repa);
+        costo = (EditText)findViewById(R.id.costo);
         enviar =(Button)findViewById(R.id.enviar);
 
 
@@ -79,50 +80,58 @@ public class MainActivity extends AppCompatActivity {
                     */
                     String mail = email.getText().toString();
 
-                    if (session != null) {
-                        InternetAddress[] internetAddresses = {
-                                new InternetAddress("hecthorgarcia0@gmail.com"),//ccarloscastillo96@gmail.com
-                                new InternetAddress(mail) };
+                    if(mail.isEmpty()){
+                        email.setError("E-mail vacío");
+                        email.requestFocus();
 
-                        String contenido =  "<h3>Cliente: </h3>"+
-                                "<h4>"+
-                                "Nombre: "+
-                                nombre.getText().toString()+" "+
-                                apellido1.getText().toString()+" "+
-                                apellido2.getText().toString()+"<br>"+
-                                "Celular: "+
-                                celular.getText().toString()+"<br>"+
-                                "</h4>"+
-                                "<h3>Equipo: </h3>"+
-                                "<h4>"+
-                                "Modelo: "+
-                                modelo.getText().toString()+"<br>"+
-                                "IMEI/#Serie: "+
-                                id_equipo.getText().toString()+"<br>"+
-                                "Detalles de reparación: "+
-                                info_repa.getText().toString()+
-                                "</h4>";
+                    }else{
 
-                        Message message = new MimeMessage(session);
-                        message.setFrom(new InternetAddress(correo));
-                        message.setSubject("Nota Centurion");
-                        message.setRecipients(Message.RecipientType.TO, internetAddresses);
-                        //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(et_correo.getText().toString() ));
+                        if (session != null) {
+                            InternetAddress[] internetAddresses = {
+                                    new InternetAddress("hecthorgarcia0@gmail.com"),//ccarloscastillo96@gmail.com
+                                    new InternetAddress(mail)};
 
-                        message.setContent(contenido, "text/html; charset=utf-8");
+                            String contenido = "<h3>Cliente: </h3>" +
+                                    "<h4>" +
+                                    "Nombre: " +
+                                    nombre.getText().toString() + " " +
+                                    apellido1.getText().toString() + " " +
+                                    apellido2.getText().toString() + "<br>" +
+                                    "Celular: " +
+                                    celular.getText().toString() + "<br>" +
+                                    "</h4>" +
+                                    "<h3>Equipo: </h3>" +
+                                    "<h4>" +
+                                    "Modelo: " +
+                                    modelo.getText().toString() + "<br>" +
+                                    "IMEI/#Serie: " +
+                                    id_equipo.getText().toString() + "<br>" +
+                                    "Detalles de reparación: " +
+                                    info_repa.getText().toString() + "<br><br>" +
+                                    "Gracias por confiar en centurión, nuestros técnicos pondrán todo el empeño para reparar tu equipo." +
+                                    "</h4>";
 
-                        Transport.send(message);
+                            Message message = new MimeMessage(session);
+                            message.setFrom(new InternetAddress(correo));
+                            message.setSubject("Nota Centurion");
+                            message.setRecipients(Message.RecipientType.TO, internetAddresses);
+                            //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(et_correo.getText().toString() ));
 
-                        Toast.makeText(MainActivity.this, "Nota enviada", Toast.LENGTH_LONG).show();
+                            message.setContent(contenido, "text/html; charset=utf-8");
 
-                        nombre.setText("");
-                        apellido1.setText("");
-                        apellido2.setText("");
-                        email.setText("");
-                        celular.setText("");
-                        modelo.setText("");
-                        id_equipo.setText("");
-                        info_repa.setText("");
+                            Transport.send(message);
+
+                            Toast.makeText(MainActivity.this, "Nota enviada", Toast.LENGTH_LONG).show();
+
+                            nombre.setText("");
+                            apellido1.setText("");
+                            apellido2.setText("");
+                            email.setText("");
+                            celular.setText("");
+                            modelo.setText("");
+                            id_equipo.setText("");
+                            info_repa.setText("");
+                        }
                     }
 
 

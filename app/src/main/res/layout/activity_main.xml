@@ -130,9 +130,18 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/costo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/costo"
+                android:inputType="number" />
+
+            <EditText
                 android:id="@+id/info_repa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/info"
                 android:ems="10"
                 android:inputType="textMultiLine" />
 
