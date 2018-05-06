@@ -12,5 +12,7 @@
     <string name="id_equipo">IMEI/#Serie</string>
     <string name="info">Información de reparación</string>
     <string name="costo">Costo de reparación</string>
+    <string name="garantia">Garantía</string>
+    <string name="observaciones">Observaciones</string>
 
 </resources>

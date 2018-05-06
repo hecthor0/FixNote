@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     Session session;
 
-    EditText nombre,apellido1,apellido2,email,celular,modelo,id_equipo,info_repa,costo;
+    EditText nombre,apellido1,apellido2,
+             email,celular,modelo,id_equipo,
+             costo,garantia,ob;
     Button enviar;
 
     @Override
@@ -44,9 +46,12 @@ public class MainActivity extends AppCompatActivity {
         celular = (EditText)findViewById(R.id.celular);
         modelo = (EditText)findViewById(R.id.modelo);
         id_equipo = (EditText)findViewById(R.id.id_equipo);
-        info_repa = (EditText)findViewById(R.id.info_repa);
         costo = (EditText)findViewById(R.id.costo);
+        garantia = (EditText)findViewById(R.id.garantia);
+        ob = (EditText)findViewById(R.id.observaciones);
         enviar =(Button)findViewById(R.id.enviar);
+
+
 
 
         enviar.setOnClickListener(new  View.OnClickListener() {
@@ -62,6 +67,34 @@ public class MainActivity extends AppCompatActivity {
                 p.put("mail.smtp.auth", "true");
                 p.put("mail.smtp.port", "465");
 
+                String contenido =
+                        "<h3>Cliente: </h3>" +
+                        "<h4>" +
+                        "Nombre: " +
+                        nombre.getText().toString() + " " +
+                        apellido1.getText().toString() + " " +
+                        apellido2.getText().toString() + "<br>" +
+                        "Celular: " +
+                        celular.getText().toString() + "<br>" +
+                        "</h4>" +
+                        "<h3>Equipo: </h3>" +
+                        "<h4>" +
+                        "Modelo: " +
+                        modelo.getText().toString() + "<br>" +
+                        "IMEI/#Serie: " +
+                        id_equipo.getText().toString() + "<br>" +
+                        "</h4>" +
+                        "<h3>Información de reparación: </h3>"+
+                        "<h4>" +
+                        "Costo de reparación : $"+
+                        costo.getText().toString() +".00 MXN"+ "<br>"+
+                        "Garantía: "+
+                        garantia.getText().toString() + "<br>" +
+                        "Observaciones: "+
+                        ob.getText().toString() + "<br><br>" +
+                        "Gracias por confiar en centurión, nuestros técnicos pondrán todo el empeño para reparar tu equipo." +
+                        "</h4>";
+
                 try {
 
                     session = Session.getDefaultInstance(p, new Authenticator() {
@@ -70,14 +103,7 @@ public class MainActivity extends AppCompatActivity {
                             return new PasswordAuthentication(correo, contraseña);
                         }
                     });
-                    /*
-                    String name =nombre.getText().toString();
-                    String ap1 = apellido1.getText().toString();
-                    String ap2 = apellido2.getText().toString();
-                    String cel = celular.getText().toString();
-                    String mod = modelo.getText().toString();
-                    String idEquipo = id_equipo.getText().toString();
-                    */
+
                     String mail = email.getText().toString();
 
                     if(mail.isEmpty()){
@@ -90,26 +116,6 @@ public class MainActivity extends AppCompatActivity {
                             InternetAddress[] internetAddresses = {
                                     new InternetAddress("hecthorgarcia0@gmail.com"),//ccarloscastillo96@gmail.com
                                     new InternetAddress(mail)};
-
-                            String contenido = "<h3>Cliente: </h3>" +
-                                    "<h4>" +
-                                    "Nombre: " +
-                                    nombre.getText().toString() + " " +
-                                    apellido1.getText().toString() + " " +
-                                    apellido2.getText().toString() + "<br>" +
-                                    "Celular: " +
-                                    celular.getText().toString() + "<br>" +
-                                    "</h4>" +
-                                    "<h3>Equipo: </h3>" +
-                                    "<h4>" +
-                                    "Modelo: " +
-                                    modelo.getText().toString() + "<br>" +
-                                    "IMEI/#Serie: " +
-                                    id_equipo.getText().toString() + "<br>" +
-                                    "Detalles de reparación: " +
-                                    info_repa.getText().toString() + "<br><br>" +
-                                    "Gracias por confiar en centurión, nuestros técnicos pondrán todo el empeño para reparar tu equipo." +
-                                    "</h4>";
 
                             Message message = new MimeMessage(session);
                             message.setFrom(new InternetAddress(correo));
@@ -130,7 +136,10 @@ public class MainActivity extends AppCompatActivity {
                             celular.setText("");
                             modelo.setText("");
                             id_equipo.setText("");
-                            info_repa.setText("");
+                            costo.setText("");
+                            garantia.setText("");
+                            ob.setText("");
+
                         }
                     }
 
