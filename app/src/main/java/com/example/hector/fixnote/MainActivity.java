@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -106,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
 
                     String mail = email.getText().toString();
 
-                    if(mail.isEmpty()){
-                        email.setError("E-mail vacío");
+                    if(!validateEmail(email.getText().toString())) {
+                        email.setError("Invalid Email");
                         email.requestFocus();
 
                     }else{
@@ -150,6 +152,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    //Return true if email is valid and false if email is invalid
+    protected boolean validateEmail(String email) {
+        String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(emailPattern);
+        Matcher matcher = pattern.matcher(email);
+
+
+        return matcher.matches();
     }
 
 }
