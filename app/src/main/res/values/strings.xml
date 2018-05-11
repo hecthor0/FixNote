@@ -17,5 +17,6 @@
     <string name="config">Configuración</string>
     <string name="ajustes">Ajustes</string>
     <string name="contacto">Contacto</string>
+    <string name="guardar">Guardar</string>
 
 </resources>
