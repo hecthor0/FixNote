@@ -1,6 +1,8 @@
 package com.example.hector.fixnote;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -109,42 +111,51 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
+                    SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
+                    String mail_d = preferences.getString("mail","");
+                    String asunto_d = preferences.getString("asunto","");
+
                     String mail = email.getText().toString();
 
-                    if(!validateEmail(email.getText().toString())) {
-                        email.setError("Invalid Email");
-                        email.requestFocus();
+                    if(mail_d.length() == 0){
+                        Toast.makeText(MainActivity.this,"Ingresa un email en ajustes",Toast.LENGTH_LONG).show();
+                    }else {
 
-                    }else{
+                        if (!validateEmail(email.getText().toString())) {
+                            email.setError("Invalid Email");
+                            email.requestFocus();
 
-                        if (session != null) {
-                            InternetAddress[] internetAddresses = {
-                                    new InternetAddress("hecthorgarcia0@gmail.com"),//ccarloscastillo96@gmail.com
-                                    new InternetAddress(mail)};
+                        } else {
 
-                            Message message = new MimeMessage(session);
-                            message.setFrom(new InternetAddress(correo));
-                            message.setSubject("Nota Centurion");
-                            message.setRecipients(Message.RecipientType.TO, internetAddresses);
-                            //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(et_correo.getText().toString() ));
+                            if (session != null) {
+                                InternetAddress[] internetAddresses = {
+                                        new InternetAddress(mail_d),
+                                        new InternetAddress(mail)};
 
-                            message.setContent(contenido, "text/html; charset=utf-8");
+                                Message message = new MimeMessage(session);
+                                message.setFrom(new InternetAddress(correo));
+                                message.setSubject(asunto_d);
+                                message.setRecipients(Message.RecipientType.TO, internetAddresses);
+                                //message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(et_correo.getText().toString() ));
 
-                            Transport.send(message);
+                                message.setContent(contenido, "text/html; charset=utf-8");
 
-                            Toast.makeText(MainActivity.this, "Nota enviada", Toast.LENGTH_LONG).show();
+                                Transport.send(message);
 
-                            nombre.setText("");
-                            apellido1.setText("");
-                            apellido2.setText("");
-                            email.setText("");
-                            celular.setText("");
-                            modelo.setText("");
-                            id_equipo.setText("");
-                            costo.setText("");
-                            garantia.setText("");
-                            ob.setText("");
+                                Toast.makeText(MainActivity.this, "Nota enviada", Toast.LENGTH_LONG).show();
 
+                                nombre.setText("");
+                                apellido1.setText("");
+                                apellido2.setText("");
+                                email.setText("");
+                                celular.setText("");
+                                modelo.setText("");
+                                id_equipo.setText("");
+                                costo.setText("");
+                                garantia.setText("");
+                                ob.setText("");
+
+                            }
                         }
                     }
 

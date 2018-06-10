@@ -6,16 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".Contacto_activity">
 
-    <TextView
-        android:id="@+id/tv_contacto"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/contacto"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
+        android:layout_marginLeft="156dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="216dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/fire_ico" />
 </android.support.constraint.ConstraintLayout>

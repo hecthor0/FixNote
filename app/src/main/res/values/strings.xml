@@ -18,5 +18,9 @@
     <string name="ajustes">Ajustes</string>
     <string name="contacto">Contacto</string>
     <string name="guardar">Guardar</string>
+    <string name="asunto">Asunto</string>
+    <string name="email_empresa">Email (Empresa)</string>
+    <string name="asunto_opcional">Asunto (opcional)</string>
+    <string name="title_activity_lista_activity">lista_activity</string>
 
 </resources>

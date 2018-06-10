@@ -18,8 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Ajustes_activity" />
-        <activity android:name=".Contacto_activity"></activity>
+        <activity
+            android:name=".Ajustes_activity"
+            android:label="@string/ajustes"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Contacto_activity"
+            android:label="@string/contacto"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 public class Ajustes_activity extends AppCompatActivity {
 
     EditText email_d;
+    EditText asunto;
     Button guardar;
 
     @Override
@@ -23,11 +24,15 @@ public class Ajustes_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ajustes_activity);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         email_d = (EditText)findViewById(R.id.email_d);
+        asunto = (EditText)findViewById(R.id.asunto_e);
         guardar =(Button)findViewById(R.id.guardar);
 
         SharedPreferences preferences = getSharedPreferences("datos", Context.MODE_PRIVATE);
         email_d.setText(preferences.getString("mail",""));
+        asunto.setText(preferences.getString("asunto",""));
 
     }
     //Botón Guardar
@@ -39,6 +44,7 @@ public class Ajustes_activity extends AppCompatActivity {
             SharedPreferences preferencias = getSharedPreferences("datos", Context.MODE_PRIVATE);
             SharedPreferences.Editor Obj_editor = preferencias.edit();
             Obj_editor.putString("mail", email_d.getText().toString());
+            Obj_editor.putString("asunto",asunto.getText().toString());
             Obj_editor.commit();
             Toast.makeText(this, "Guardado", Toast.LENGTH_SHORT).show();
         }
